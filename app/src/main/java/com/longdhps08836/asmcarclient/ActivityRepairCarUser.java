@@ -52,22 +52,33 @@ public class ActivityRepairCarUser extends AppCompatActivity {
         edtCarName.setText(name);
         edtCarInformation.setText(info);
 
+
         btnAddCarUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                bytes = getByteArrayFromBitmap(bitmap);
                 String carName = edtCarName.getText().toString();
-                String information = edtCarInformation.getText().toString();
+                String vehicleMaintenance = edtCarInformation.getText().toString();
 
-                Car_user car_user = new Car_user(id, bytes, carName, information);
-                CarUserDAO carUserDAO = new CarUserDAO(ActivityRepairCarUser.this);
-                carUserDAO.update(car_user);
+                if (bitmap != null && !carName.isEmpty() && !vehicleMaintenance.isEmpty()) {
 
-                Fragment_Profile_Client.listCarUser.clear();
-                Fragment_Profile_Client.listCarUser.addAll(carUserDAO.getAllCarInfor());
-                finish();
-                Toast.makeText(ActivityRepairCarUser.this, "Add Success", Toast.LENGTH_SHORT).show();
+                    bytes = getByteArrayFromBitmap(bitmap);
+                    Car_user car_user = new Car_user(id, bytes, carName, vehicleMaintenance);
+                    CarUserDAO carUserDAO = new CarUserDAO(ActivityRepairCarUser.this);
+                    carUserDAO.update(car_user);
+
+                    Fragment_Profile_Client.listCarUser.clear();
+                    Fragment_Profile_Client.listCarUser.addAll(carUserDAO.getAllCarInfor());
+                    finish();
+                    Toast.makeText(ActivityRepairCarUser.this, "Edit Success", Toast.LENGTH_SHORT).show();
+                } else if (bitmap == null) {
+                    Toast.makeText(ActivityRepairCarUser.this, "Please select a picture", Toast.LENGTH_SHORT).show();
+                } else if (carName.equals("")) {
+                    Toast.makeText(ActivityRepairCarUser.this, "Car Name  may not be null", Toast.LENGTH_SHORT).show();
+                } else if (vehicleMaintenance.equals("")) {
+                    Toast.makeText(ActivityRepairCarUser.this, "Car vehicleMaintenance may not be null", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
