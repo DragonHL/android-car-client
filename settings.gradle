@@ -1,0 +1,2 @@
+rootProject.name='asmCarClient'
+include ':app'

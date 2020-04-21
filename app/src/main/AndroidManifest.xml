@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.longdhps08836.asmcarclient">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/logo_mercedes"
+        android:label=""
+        android:roundIcon="@mipmap/logo_mercedes_round"
+        android:supportsRtl="true"
+        android:theme="@style/App"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ActivityRepairCarUser"></activity>
+        <activity android:name=".ActivityAddCarUser"></activity>
+        <activity
+            android:name=".Main_Buttom_Navigation_Layout"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ForgotPassword" />
+        <activity android:name=".Register" />
+        <activity android:name=".Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

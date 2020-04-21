@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_activity_add"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtTextImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Choose photo here "
+                android:textSize="15sp"
+                />
+
+            <ImageView
+                android:id="@+id/imgCarUser"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#FFFFFF"
+                android:layout_below="@+id/txtTextImage"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_image_black_24dp" />
+
+            <TextView
+                android:id="@+id/txtimage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgCarUser"
+                android:layout_centerHorizontal="true"
+                android:text="Car Images"
+                android:textColor="#202020"
+                android:textSize="18dp" />
+
+
+
+            <TextView
+                android:id="@+id/txtCarName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/txtimage"
+                android:layout_marginTop="10dp"
+                android:background="#1E88E5"
+                android:gravity="center|left"
+                android:paddingLeft="10dp"
+                android:text="Car Name: "
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtCarName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/txtCarName"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/borther_edittext_add"
+                android:hint="Name"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:id="@+id/txtCarInformation"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/edtCarName"
+                android:layout_marginTop="10dp"
+                android:background="#1E88E5"
+                android:gravity="center|left"
+                android:paddingLeft="10dp"
+                android:paddingHorizontal="20dp"
+                android:text="Car Information: "
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtCarInformation"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/txtCarInformation"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/borther_edittext_add"
+                android:ems="10"
+                android:gravity="top|left"
+                android:hint="Information..."
+                android:inputType="textMultiLine"
+                android:lines="8"
+                android:padding="10dp"
+                android:scrollbars="vertical" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@+id/edtCarInformation"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnAddCarUser"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="#039BE5"
+                    android:textColor="#fff"
+                    android:text="Ok" />
+
+                <Button
+                    android:id="@+id/btnCancelCarUser"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="#039BE5"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#fff"
+                    android:text="Cancel" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+</LinearLayout>

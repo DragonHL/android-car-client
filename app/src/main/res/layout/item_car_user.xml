@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:padding="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtItemCarNameUser"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:ellipsize="end"
+            android:hint="Car Name User"
+            android:maxLines="1"
+            android:paddingLeft="8dp"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/imgItemCarUser"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="#FFFFFF"
+            />
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#A1A1A1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            >
+
+
+            <TextView
+                android:id="@+id/txtItemCarInforUser"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:hint="Car Infor User"
+                android:maxLines="1"
+                android:paddingLeft="8dp"
+                android:gravity="center|left"
+                android:textColor="#333333"
+                android:textStyle="bold"
+                android:textSize="20dp" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:id="@+id/btnEditCarUser"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_edit_black_24dp" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/background_button_edit"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:id="@+id/btnDeleteCarUser"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_delete_black_24dp" />
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <!--    <LinearLayout-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:orientation="vertical">-->
+
+        <!--        -->
+
+        <!--    </LinearLayout>-->
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
