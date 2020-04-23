@@ -1,13 +1,16 @@
 package com.longdhps08836.asmcarclient;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
@@ -18,6 +21,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+
 import android.widget.Toast;
 
 import com.longdhps08836.asmcarclient.Adapter.Adapter_Car_User;
@@ -41,6 +46,10 @@ public class Fragment_Profile_Client extends Fragment {
 
     Bitmap bm;
 
+    SearchView searchView;
+
+    ArrayList<Car_user> searchlist;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,8 +66,6 @@ public class Fragment_Profile_Client extends Fragment {
 
 
         updateListClient();
-
-
 
 
         return view;
@@ -79,6 +86,38 @@ public class Fragment_Profile_Client extends Fragment {
         // Your menu needs to be added here
         inflater.inflate(R.menu.menu_profile, menu);
 
+        MenuItem itemSearch = menu.findItem(R.id.menu_search);
+        SearchView searchView = (SearchView) itemSearch.getActionView();
+
+        searchView.setQueryHint("Please enter the car looking");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Toast.makeText(getContext(), "" + newText, Toast.LENGTH_SHORT).show();
+                searchlist = new ArrayList<Car_user>();
+                if (newText.length() == 0) {
+                    searchlist = listCarUser;
+                } else {
+                    for (Car_user car_user : listCarUser) {
+                        if (car_user.getCarName().toLowerCase().contains(newText.toLowerCase())) {
+                            searchlist.add(car_user);
+                        }
+                    }
+                }
+
+                adapter_car_user = new Adapter_Car_User(getContext(), searchlist);
+                rvCarUser.setAdapter(adapter_car_user);
+                return true;
+            }
+        });
+
+
         // tham khảo https://stackoverflow.com/questions/18301329/changing-text-size-of-menu-item-in-android
         for (int i = 0; i < menu.size(); i++) {
             MenuItem item = menu.getItem(i);
@@ -90,7 +129,6 @@ public class Fragment_Profile_Client extends Fragment {
 
         super.onCreateOptionsMenu(menu, inflater);
     }
-
 
 
     @Override
@@ -109,6 +147,8 @@ public class Fragment_Profile_Client extends Fragment {
 
 
                 break;
+
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -124,7 +164,6 @@ public class Fragment_Profile_Client extends Fragment {
         rvCarUser.setAdapter(adapter_car_user);
         adapter_car_user.notifyDataSetChanged();
         Log.d("rvCarProduct", String.valueOf(rvCarUser));
-
 
 
 //        Collections.reverse(listCarInfor);  đảo ngược danh sách khi mới thêm vào

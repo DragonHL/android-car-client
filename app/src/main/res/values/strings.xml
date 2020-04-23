@@ -8,5 +8,5 @@
 
     <string name="botton_forgot_password">Change Password</string>
 
-    <string name="uriSocketio">http://192.168.1.7:3000/</string>
+    <string name="search_title">Search.....</string>
 </resources>

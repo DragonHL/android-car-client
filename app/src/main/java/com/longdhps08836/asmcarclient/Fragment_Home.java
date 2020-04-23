@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
@@ -16,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.longdhps08836.asmcarclient.Adapter.Adapter_Car_Product;
 import com.longdhps08836.asmcarclient.DAO.CarProductDAO;
@@ -33,6 +35,8 @@ public class Fragment_Home extends Fragment {
     CarProductDAO carProductDAO ;
 
     public static Adapter_Car_Product adapter_car_product;
+
+    ArrayList<Car_product> searchList;
 
 
     @Nullable
@@ -62,13 +66,46 @@ public class Fragment_Home extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(false);
+        setHasOptionsMenu(true);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Your menu needs to be added here
-        inflater.inflate(R.menu.menu_toolbar, menu);
+        inflater.inflate(R.menu.menu_home, menu);
+
+        MenuItem itemSearch = menu.findItem(R.id.menu_search_home);
+        SearchView searchView = (SearchView) itemSearch.getActionView();
+
+        searchView.setQueryHint("Please enter the car looking");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Toast.makeText(getContext(), "" + newText, Toast.LENGTH_SHORT).show();
+                searchList = new ArrayList<Car_product>();
+                if (newText.length() == 0) {
+                    searchList = listCarProduct;
+                } else {
+                    for (Car_product itemCar_Product : listCarProduct) {
+                        if (itemCar_Product.getNameCar().toLowerCase().contains(newText.toLowerCase())) {
+                            searchList.add(itemCar_Product);
+                        }
+                    }
+                }
+
+                adapter_car_product = new Adapter_Car_Product(getContext(), searchList);
+                rvCarProduct.setAdapter(adapter_car_product);
+                return true;
+            }
+        });
+
+
 
         // tăng kích thước item trong menu
         // tham khảo https://stackoverflow.com/questions/18301329/changing-text-size-of-menu-item-in-android
